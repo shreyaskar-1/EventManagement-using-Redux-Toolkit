@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { clearAllUsers } from "../actions";
 
 const userSlice = createSlice({
     name: "user",
@@ -11,16 +12,16 @@ const userSlice = createSlice({
         removeUser(state, action) {
             state.splice(action.payload,1);
         },
-        clearAllUsers(state, action) {
+        // clearAllUsers(state, action) {
         //    return [];
 
-         },
+        //  },
     },
-    // extraReducers(builder){
-    //     builder.addCase(userSlice.actions.clearAllUsers,()=>{
-    //         return [];
-    //     })
-    // }
+    extraReducers(builder){
+        builder.addCase(clearAllUsers,()=>{
+            return [];
+        })
+    }
 });
 
 // if action is supposed to be handled by one reducer , use reducers.
@@ -28,4 +29,4 @@ const userSlice = createSlice({
 
 console.log(userSlice.actions)
 export default userSlice.reducer;  
-export const {addUser , removeUser , clearAllUsers} = userSlice.actions;
+export const {addUser , removeUser} = userSlice.actions;
